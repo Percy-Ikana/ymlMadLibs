@@ -1,0 +1,58 @@
+#any entry that has sub-attributes itself is "complex", if they just have strings they are "simple"
+#simple attributes are just replaced whenever thier tag appears in a base
+#complex attrs can only go one deep, I did not want to handle more. 
+
+#these are the bases that are mad-libed. use \n to make the output have a newline.
+#tags are in the format of [tag], where tag is an entry elsewhere in this file
+bases:
+#you refer to sub elements of complex elements like below.
+ - "as a [text], [name0] likes [food0dinner]. But [name1] like [food1dinner], \n and for [aftermeal], [name1] likes [food1dessert], and [name0] likes [food0dessert]"
+ - "as another [text], [name1] likes [food1dinner] for [meal], and [name0] likes [food0dessert] for [aftermeal]."
+ #You can use [tag-#] to make all tags with the same number be shared, and tags can use used inside other tags, to keep things together
+ # in this case, this makes sure that the food chosen is of the same meal printed
+ - "one final [text], [name1] likes [food1[meal-0]] for [meal-0]"
+
+#verbs
+text:
+  - example
+  - demonstration
+
+meal:
+  - breakfast
+  - lunch
+  - dinner
+
+aftermeal:
+  - dessert
+  - snack
+
+names:
+  - name: joan
+    food:
+      breakfast:
+        - potato mochi
+      lunch:
+        - grilled cheese
+      dinner: 
+        - tofu
+        - pasta
+      dessert:
+        - icecream
+        - sundays
+      snack:
+        - popcorn
+
+  - name: john
+    food:
+      breakfast:
+        - eggs
+      lunch:
+        - jelly sandwich
+      dinner: 
+        - rice
+        - salad
+      dessert:
+        - shakes
+        - malts
+      snack:
+        - chips
