@@ -1,7 +1,7 @@
 #any entry that has sub-attributes itself is "complex", if they just have strings they are "simple"
 #simple attributes are just replaced whenever thier tag appears in a base
 #complex attrs can only go one deep, I did not want to handle more. 
-
+#It can also take several files at once, and they can all access eachothers tags.
 #these are the bases that are mad-libed. use \n to make the output have a newline.
 #tags are in the format of [tag], where tag is an entry elsewhere in this file
 bases:
@@ -11,6 +11,7 @@ bases:
  #You can use [tag-#] to make all tags with the same number be shared, and tags can use used inside other tags, to keep things together
  # in this case, this makes sure that the food chosen is of the same meal printed
  - "one final [text], [name1] likes [food1[meal-0]] for [meal-0]"
+#You can also include tags within the below, and this can include the -num markers as well
 
 #verbs
 text:
@@ -18,7 +19,9 @@ text:
   - demonstration
 
 meal:
-  - breakfast
+  #You can specifiy a number of times to have an element repeat, therefore how likely it is to appear compared to the others
+  #by starting the field with [num###]. This will be reomved in processing. 
+  - "[num20]breakfast"
   - lunch
   - dinner
 
@@ -37,7 +40,7 @@ names:
         - tofu
         - pasta
       dessert:
-        - icecream
+        - "[num2]icecream"
         - sundays
       snack:
         - popcorn
